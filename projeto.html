@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal Horizonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topo">
+  <a class="logo" href="#inicio">Horizonte<span>.</span></a>
+  <button id="menuBtn" aria-label="Abrir menu">☰</button>
+  <nav id="menu" aria-label="Principal"></nav>
+</header>
+<main id="app"></main>
+<footer>© 2026 Portal Horizonte · Trabalho acadêmico · Textos e dados de exemplo</footer>
+<script>
+/* TROQUE AS FOTOS AQUI:
+   Cole entre as aspas o LINK da foto (https://...) ou o caminho de um arquivo (imagens/foto.jpg).
+   Se deixar vazio (''), o site usa uma foto automática. */
+const FOTOS = {
+  // Página Início (cartões)
+  inicio1: 'https://tse4.mm.bing.net/th/id/OIP.djm-dOqoQ7QA8q_ClfrjUQHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+  inicio2: 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/08/13/17235773167058.jpg', 
+  inicio3: 'https://veja.abril.com.br/wp-content/uploads/2026/05/lula-flavio-bolsonaro-4.jpg?quality=70&w=640&h=360&crop=1&strip=info',
+  inicio4: '', // Agrícola
+  inicio5: 'https://imagens-cdn.canalrural.com.br/wp-content/uploads/23-meteo-pasq.jpg',
+  inicio6: 'https://th.bing.com/th/id/OIP.1sDweC4WjAuPyoAUJ9JPMwHaEn?w=264&h=180&c=7&r=0&o=7&pid=1.7&rm=3', 
+  inicio7: "https://tse4.mm.bing.net/th/id/OIP.0y33fj1Jd5bW1Dl1lLTM3AHaEL?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", 
+  inicio8: 'https://tse4.mm.bing.net/th/id/OIP.-fV9OPu3jjpx9MZwvWRruwHaD3?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', 
+  // Notícias
+  noticias1: 'https://img.freepik.com/premium-photo/busy-intersection-with-traffic-light-sign-that-says-turn-right_1169665-88266.jpg', noticias2: 'https://tse2.mm.bing.net/th/id/OIP.-A1_UOfEjxjEYUhrUi1g3wHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', noticias3: 'https://tse2.mm.bing.net/th/id/OIP.7clsPuJwugv7YaYcW6D8fwHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+  // Futebol
+  futebol1: 'https://lncimg.lance.com.br/cdn-cgi/image/width=950,quality=75,fit=pad,format=webp/uploads/2026/02/Ceara-x-Fortaleza-8-scaled-aspect-ratio-512-320.jpg', futebol2: 'https://tse4.mm.bing.net/th/id/OIP.DHxv52IwSs6ddpswVJOkzgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', futebol3: 'https://tse2.mm.bing.net/th/id/OIP.1dch6zc64Wk_RvNxY7CsqgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+  // Política
+  politica1: 'https://tse3.mm.bing.net/th/id/OIP.-XHQElQIyjw8eV9Ne3jBTwHaD3?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', politica2: 'https://tse2.mm.bing.net/th/id/OIP.YAkeYFMZj4btLBwpZrxE_QHaEu?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', politica3: 'https://tse3.mm.bing.net/th/id/OIP.RblmKZc93E6BRWQJV2xWJAHaDa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+  // Agrícola
+  agricola1: '', agricola2: '', agricola3: 'https://tse3.mm.bing.net/th/id/OIP.apJ0zMtV0_zhwyFcVIFFLwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+  // Aeroportos e Combustíveis
+  aeroportos1: '',
+  combustiveis1: '',
+  // Catálogo de IAs
+  ias1: 'https://tse4.mm.bing.net/th/id/OIP.TOMCx9YGDmdSA5gC09MguQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', // ChatGPT
+  ias2: 'https://tse4.mm.bing.net/th/id/OIP.dlFPFXnSh8BJHfLhIA3y4QHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', // Claude
+  ias3: 'https://tse3.mm.bing.net/th/id/OIP.RMFSxpy8mCIHEOlrdJ_TMwHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', // Gemini
+  ias4: 'https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2024/10/copilot-image-1900x1069.jpg', // Copilot
+  ias5: 'https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/5556effb-f8b3-451e-98ad-9a07d45bc0da_1920x1080.jpeg', // Perplexity
+  ias6: 'https://www.geeky-gadgets.com/wp-content/uploads/2024/04/Using-Meta-AI-large-language-model-2024.jpg'  // Meta AI
+};
+</script>
+<script src="script.js"></script>
+</body>
+</html>
