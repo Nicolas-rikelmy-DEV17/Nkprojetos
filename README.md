@@ -9,4 +9,4 @@ Este é um projeto pessoal de desenvolvimento web focado no aprendizado e práti
 
 ## 🚀 Como visualizar o projeto:
 Você pode ver o site funcionando na prática acessando o link do GitHub Pages:
-https://github.io
+https://nicolas-rikelmy-dev17.github.io/Nkprojetos/
